@@ -429,11 +429,11 @@ CXXFLAGS += -MMD -MP
 
 # Complete build flags.
 COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
-CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS) -lboost_system -lboost_thread
+CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS) -lboost_system -lboost_thread -lpthread 
 NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)
 # mex may invoke an older gcc that is too liberal with -Wuninitalized
 MATLAB_CXXFLAGS := $(CXXFLAGS) -Wno-uninitialized
-LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
+LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS) -lboost_system -lboost_thread -lpthread 
 
 USE_PKG_CONFIG ?= 0
 ifeq ($(USE_PKG_CONFIG), 1)
