@@ -5,7 +5,7 @@ set(Caffe_DEFINITIONS "")
 set(Caffe_COMPILE_OPTIONS "")
 
 # ---[ Boost
-find_package(Boost 1.54 REQUIRED COMPONENTS system thread filesystem)
+find_package(Boost 1.70.0 REQUIRED COMPONENTS system thread filesystem)
 list(APPEND Caffe_INCLUDE_DIRS PUBLIC ${Boost_INCLUDE_DIRS})
 list(APPEND Caffe_LINKER_LIBS PUBLIC ${Boost_LIBRARIES})
 
@@ -170,7 +170,7 @@ if(BUILD_python)
       endif()
     endwhile()
     if(NOT Boost_PYTHON_FOUND)
-      find_package(Boost 1.46 COMPONENTS python)
+      find_package(Boost 1.70.0 COMPONENTS python)
     endif()
   else()
     # disable Python 3 search
