@@ -213,7 +213,7 @@ ifeq ($(USE_OPENCV), 1)
 	endif
 
 endif
-PYTHON_LIBRARIES ?= boost_python python2.7
+PYTHON_LIBRARIES ?= boost_python python3.7
 WARNINGS := -Wall -Wno-sign-compare
 
 ##############################
@@ -428,8 +428,8 @@ LIBRARY_DIRS += $(LIB_BUILD_DIR)
 CXXFLAGS += -MMD -MP
 
 # Complete build flags.
-COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
-CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
+COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
+CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS) -lboost_system -lboost_thread
 NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)
 # mex may invoke an older gcc that is too liberal with -Wuninitalized
 MATLAB_CXXFLAGS := $(CXXFLAGS) -Wno-uninitialized
